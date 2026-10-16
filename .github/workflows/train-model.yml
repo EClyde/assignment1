@@ -1,0 +1,59 @@
+name: Build classification model
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'data/raw/**'
+      - 'requirements.txt'
+      - '.github/workflows/train-model.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Train with existing labelled measurements
+        run: python scripts/train_model.py
+      - name: Generate ESP32 model.h
+        run: python scripts/generate_model_header.py
+      - name: Verify generated files and class counts
+        run: |
+          python - <<'PY'
+          import numpy as np
+          import pandas as pd
+          from pathlib import Path
+          csv=pd.read_csv("data/raw/data_complete.csv")
+          assert csv.groupby("label").size().min()>=500
+          s=np.load("outputs/surfaces.npz")
+          assert s["tables"].ndim==3
+          assert s["tables"].dtype==np.uint8
+          assert len(s["class_names"])>=3
+          assert Path("firmware/inference/model.h").stat().st_size>500
+          assert Path("outputs/dbscan_vs_ground_truth.csv").exists()
+          assert Path("outputs/heldout_confusion.csv").exists()
+          print("PASS: trained tables, header, evaluation tables and class counts")
+          PY
+      - name: Commit measured model artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/surfaces.npz outputs/dbscan_vs_ground_truth.csv outputs/heldout_confusion.csv firmware/inference/model.h
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate trained real-data model and evaluation artifacts [skip ci]"
+            git push
+          fi
+      - name: Upload model build evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: classification-model-build
+          path: |
+            outputs/
+            firmware/inference/model.h
