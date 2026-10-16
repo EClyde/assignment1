@@ -14,3 +14,7 @@ Source: User-supplied ESP32 serial output. The raw paste included one garbled st
 - UNKNOWN is allowed. Existing classifier, model, and rejection threshold were not modified.
 - Class labels are classifier output, not independently labelled test ground truth.
 - Pending: sun test, paired desktop-vs-device agreement, Arduino flash/SRAM, raw-vs-EMA plot, board photo/video, and revision of original report.
+
+## Desktop versus on-device agreement
+
+The 702 physical ESP32 records were replayed through a desktop implementation using the **same committed model.h** lookup table, log1p scaling, grid-cell clipping, class order, and REJECT_TAU. All **702/702** predicted classes matched (100% agreement), including UNKNOWN. This is an on-device-versus-desktop implementation parity check on shared input values, **not** 100% true-label classification accuracy on independently labelled lighting conditions.
