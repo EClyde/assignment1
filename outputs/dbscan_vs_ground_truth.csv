@@ -1,0 +1,5 @@
+ground_truth,0,1,2,3
+LED,0,0,0,360
+fluorescent,0,0,360,0
+shade,0,360,0,0
+sun,360,0,0,0
