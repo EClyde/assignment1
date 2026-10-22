@@ -71,3 +71,8 @@ The training flow performs DBSCAN on sensor values alone, fits per-cluster KDEs,
 The assignment requires you to **revise the previous lab paper**; it should contain the real DBSCAN confusion table, held-out test agreement, fresh ESP32-vs-desktop agreement, raw vs EMA plot, measured flash/SRAM/latency versus prediction, limitations, wired prototype photo, and a **30–60 second demonstration video**. Commit the paper and evidence to this repository.
 
 Only create the graded GitHub release tag (e.g. `v2.0`) after all evidence is committed. Do not invent hardware measurement results or mark the project fully complete before the on-device tests and report are finished.
+
+
+## Proof-of-concept media
+
+A photo of the physical ESP32 breadboard prototype was supplied and reviewed; see [photo/video evidence status](evidence/PHOTO_VIDEO_STATUS.md). The original JPEG still needs to be added to `evidence/IMG_2045.jpeg`, and the 30–60 second demonstration video has not yet been received. Recorded ESP32 classifications and the 702/702 desktop lookup agreement remain in `evidence/`.
