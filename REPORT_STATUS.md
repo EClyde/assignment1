@@ -3,7 +3,7 @@
 ## Current evidence
 Existing labelled data: 2,400 samples (600 per lighting class: sun, shade, LED, fluorescent). Two sensors used: GUVA-S12SD UV (ADC GPIO34) and TSL2591 IR channel (I2C GPIO21/22). The assignment PDF explicitly specifies an **analog IR photodiode on GPIO35**, so the TSL2591 substitution needs instructor approval.
 
-The original dataset contains **already filtered** sensor values. Raw-vs-filtered plot is not possible without collecting additional unfiltered samples. Do not fabricate it.
+The original dataset contains **already filtered** sensor values. The student has since supplied new **raw + EMA-filtered** LED, fluorescent and shade recordings. The measured excerpts, report interpretation and plotting script are now in `evidence/filter_excerpts_2026-10-23.csv`, `evidence/filtering_results_2026-10-23.md`, and `scripts/plot_filter_excerpts.py`. The original full pasted session is not yet committed as a full raw log; do not fabricate missing rows.
 
 ## To obtain final evidence
 - [x] Train and generate model via GitHub Actions; actual files are committed.
