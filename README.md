@@ -10,7 +10,7 @@ The original labelled dataset has **2,400 existing sensor measurements** (600 pe
 - `outputs/surfaces.npz`
 - `firmware/inference/model.h`
 
-Automated training reported 4 DBSCAN clusters, 0 noise, 100% validation accuracy and 100% test accuracy on a **random split of the original recordings**. This is not independent new-session hardware validation; sequential time-series data can be correlated. The uint8 lookup table contains 4 × 16 × 16 = **1024 bytes**, plus **16 bytes** for scaling bounds. Actual flash and SRAM consumption have not been measured.
+Automated training reported 4 DBSCAN clusters, 0 noise, 100% validation accuracy and 100% test accuracy on a **random split of the original recordings**. This is not independent new-session hardware validation; sequential time-series data can be correlated. The uint8 lookup table contains 4 × 16 × 16 = **1024 bytes**, plus **16 bytes** for scaling bounds. Actual **compiled inference sketch** memory measurements have now been recorded: **308,028 bytes flash (23% of 1,310,720)** and **23,724 bytes global SRAM (7% of 327,680)**. See [measured memory evidence](evidence/esp32_memory_measurements_2026-10-23.md).
 
 ## Sensor setup
 The project uses the student's two original sensor modules:
@@ -75,4 +75,4 @@ Only create the graded GitHub release tag (e.g. `v2.0`) after all evidence is co
 
 ## Proof-of-concept media
 
-A photo of the physical ESP32 breadboard prototype was supplied and reviewed; see [photo/video evidence status](evidence/PHOTO_VIDEO_STATUS.md). The original JPEG still needs to be added to `evidence/IMG_2045.jpeg`, and the 30–60 second demonstration video has not yet been received. Recorded ESP32 classifications and the 702/702 desktop lookup agreement remain in `evidence/`.
+A photo of the physical ESP32 breadboard prototype was supplied and reviewed; see [photo/video evidence status](evidence/PHOTO_VIDEO_STATUS.md). The original JPEG still needs to be added to `evidence/IMG_2045.jpeg`, and the received **25-second** demonstration video has been reviewed and retained as the student's chosen final recording (the handout asks for 30–60 seconds). Recorded ESP32 classifications and the 702/702 desktop lookup agreement remain in `evidence/`.
