@@ -76,3 +76,7 @@ Only create the graded GitHub release tag (e.g. `v2.0`) after all evidence is co
 ## Proof-of-concept media
 
 A photo of the physical ESP32 breadboard prototype was supplied and reviewed; see [photo/video evidence status](evidence/PHOTO_VIDEO_STATUS.md). The original JPEG still needs to be added to `evidence/IMG_2045.jpeg`, and the received **25-second** demonstration video has been reviewed and retained as the student's chosen final recording (the handout asks for 30–60 seconds). Recorded ESP32 classifications and the 702/702 desktop lookup agreement remain in `evidence/`.
+
+## Filtering comparison (new measured evidence)
+
+Representative raw-versus-EMA measurements for LED, fluorescent and shade are recorded in [filter excerpts CSV](evidence/filter_excerpts_2026-10-23.csv) and described in [filtering results](evidence/filtering_results_2026-10-23.md). Recreate three measured comparison figures using `python scripts/plot_filter_excerpts.py`. The submitted session contained approximately 300 rows, of which 87 representative rows have been transcribed into this repository; this is not the complete new raw recording. The classifier remains unchanged.
